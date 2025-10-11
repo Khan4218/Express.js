@@ -7,6 +7,7 @@ const app = express()
 
 app.get('/api', (req, res) => {
 
+
   let filteredData = startups
 
   const { industry, country, continent, is_seeking_funding, has_mvp } = req.query;

@@ -1,0 +1,17 @@
+{
+  "name": "challenges",
+  "version": "1.0.0",
+  "description": "challenges i am coming across this course",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "author": "MIR AKBAR ALI KHAN",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^3.1.10"
+  }
+}
