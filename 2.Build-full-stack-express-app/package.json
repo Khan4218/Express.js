@@ -1,0 +1,28 @@
+{
+  "name": "2.build-full-stack-express-app",
+  "version": "1.0.0",
+  "description": "Building a fullstack app using express.js",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Khan4218/Express.js.git"
+  },
+  "author": "MIR AKBAR ALI KHAN",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Khan4218/Express.js/issues"
+  },
+  "homepage": "https://github.com/Khan4218/Express.js#readme",
+  "devDependencies": {
+    "nodemon": "^3.1.10"
+  },
+  "dependencies": {
+    "express": "^5.1.0"
+  }
+}
