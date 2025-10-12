@@ -42,3 +42,14 @@ app.listen(PORT, () => {
   console.log(`server listening on port:${PORT}`);
 })
 
+app.get('/api/:field/:term', (req, res) => {
+  let filteredData = startups
+  const { field, term } = req.params
+  if (field && term) {
+    filteredData = filteredData.filter(fil => fil[field]?.toLowerCase() === term.toLowerCase())
+  }
+
+  res.json(filteredData)
+}
+)
+
