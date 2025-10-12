@@ -4,4 +4,9 @@ const PORT = 8000
 
 const app = express()
 
-app.listen(PORT, () => { console.log(`Listening on port ${PORT}`) });
+app.use(express.static('public'))
+
+app.listen(PORT, () => { console.log(`Listening on port ${PORT}`) })
+  .on('error', () => {
+    console.error('failed to start server', err)
+  });
