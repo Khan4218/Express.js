@@ -37,7 +37,7 @@ document.getElementById('search-input').addEventListener('submit', (e) => {
 
 document.querySelector('form').addEventListener('submit', (e) => {
   e.preventDefault()
-  applySearchFilter()
+  applySearchFilter() 
 })
 
 document.getElementById('genre-select').addEventListener('change', async (e) => {
@@ -47,3 +47,4 @@ document.getElementById('genre-select').addEventListener('change', async (e) => 
 })
 
 
+ 
