@@ -1,5 +1,5 @@
 const signupForm = document.getElementById('signup-form')
-const errorMessage = document.getElementById('error-message') 
+const errorMessage = document.getElementById('error-message')
 
 signupForm.addEventListener('submit', async (e) => {
   e.preventDefault() // Prevent form from reloading
@@ -19,8 +19,6 @@ signupForm.addEventListener('submit', async (e) => {
       headers: {
         'Content-Type': 'application/json'
       },
-      // credentials: 'include', 
-      // Ensure session is created
       body: JSON.stringify({ name, email, username, password })
     })
 

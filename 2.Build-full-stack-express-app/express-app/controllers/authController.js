@@ -1,4 +1,5 @@
 import validator from 'validator'
+import { getDBConnection } from '../db/db.js'
 export async function registerUser(req, res) {
 
   let { name, email, username, password } = req.body
@@ -22,6 +23,26 @@ export async function registerUser(req, res) {
     return res.status(400).json({ error: 'Ivalid email format' })
   }
 
-  console.log(req.body);
+  try {
+    const db = await getDBConnection()
+
+    const existing = await db.get('SELECT id FROM users WHERE email = ? OR username = ?', [email, username])
+
+    if (existing) {
+      return res.status(400).json({ error: 'Email or Username already exists' })
+    }
+
+    const result = await db.run('INSERT INTO users (name,email,username,password) VALUES(?,?,?,?)',
+      [name, email, username, password])
+
+    res.status(201).json({ message: 'User registered' })
+
+
+
+
+  } catch (error) {
+    console.error('Registration error:', error.message);
+    res.status(500).json({ error: 'Registration failed. Please try again.' })
+  }
 
 }
