@@ -13,7 +13,7 @@ export async function getGenres(req, res) {
     res.json(genre)
 
   } catch (error) {
-    res.status(500).json({ error: 'Failed to fetch genres', details: err.message })
+    res.status(500).json({ error: 'Failed to fetch genres', details: errors.message })
   }
 
 

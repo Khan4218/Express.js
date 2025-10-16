@@ -28,8 +28,24 @@ async function createTable() {
             );
       `)
 
+      await db.exec(`
+       CREATE TABLE IF NOT EXISTS products (
+         id INTEGER PRIMARY KEY AUTOINCREMENT,
+         title TEXT NOT NULL,
+         artist TEXT,
+         price REAL,
+         image TEXT,
+         year INTEGER,
+         genre TEXT,
+         stock INTEGER
+       );
+     `);
   await db.close()
   console.log('table created')
+
 }
 
 createTable() 
+
+
+
