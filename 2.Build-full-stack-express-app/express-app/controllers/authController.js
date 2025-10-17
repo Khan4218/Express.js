@@ -65,35 +65,6 @@ export async function loginUser(req, res) {
 
   username = username.trim()
 
-  
-
-
-
-
-/*
-Challenge:
-
- 1. If the user's login details are incomplete, end the response with this JSON and a suitable code:
-    { error: 'All fields are required' } 
-
- 2. If the user's login details are invalid, end the response with this JSON and a suitable code:
-    { error: 'Invalid credentials'}. This could be because the user does not exist OR because the password does not match the username.
-
- 3. If the user’s login details are valid, create a session for the user and end the response with this JSON:
-    { message: 'Logged in' }
-
-Look at .registerUser() above. Is there anything else you need to do?
-
-Important: lastID is not available to us here, so how can we get the user’s ID to attach it to the session?
-
-You can test it by signing in with the following:
-username: test
-password: test
-
-hint.md for help.
-*/
-
-
   try {
     const db = await getDBConnection()
 
@@ -117,4 +88,11 @@ hint.md for help.
     console.error('Login error:', err.message)
     res.status(500).json({ error: 'Login failed. Please try again.' })
   }
+}
+
+
+export async function logOutUser(req, res) {
+req.session.destroy(() => {
+  res.status(400).json({message: 'Logged Out'})
+})
 }
