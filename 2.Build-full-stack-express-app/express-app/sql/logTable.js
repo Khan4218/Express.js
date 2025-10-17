@@ -1,6 +1,7 @@
 import sqlite3 from 'sqlite3'
 import { open } from 'sqlite'
 import path from 'node:path'
+import { getDBConnection } from '../db/db.js'
 
 
 async function viewAllProducts() {
@@ -24,7 +25,7 @@ async function viewAllProducts() {
 viewAllProducts()
 
 
-import { getDBConnection } from '../db/db.js'
+
 
 async function logTable() {
   const db = await getDBConnection()
@@ -48,3 +49,28 @@ async function logTable() {
 }
 
 logTable()
+
+
+
+
+async function logCartTable() {
+  const db = await getDBConnection()
+
+  const tableName = 'cart_items'
+
+  try { 
+    const table = await db.all(`SELECT * FROM ${tableName}`)
+    console.table(table)
+
+  } catch (err) {
+
+    console.error('Error fetching table:', err.message)
+
+  } finally {
+
+    await db.close()
+
+  }
+}
+
+logCartTable()
