@@ -1,11 +1,24 @@
 import express from 'express'
 import { productsRouter } from './routes/products.js'
 import { authRouter } from './routes/auth.js'
-const PORT = 8000
+import session from 'express-session'
 
+const PORT = 8000
 const app = express()
+const secret = process.env.SPIRAL_SESSION_SECRET || 'jellyfish-baskingshark'
 
 app.use(express.json())
+
+app.use(session({
+  secret: secret,
+  resave: false,
+  saveUninitialized: false,
+  cookie: {
+    httpOnly: true,
+    secure: false,
+    sameSite: 'lax'
+  }
+}))
 app.use(express.static('public'))
 
 app.use('/api/products', productsRouter)
@@ -14,6 +27,6 @@ app.use('/api/auth', authRouter)
 
 
 app.listen(PORT, () => { console.log(`Listening on port ${PORT}`) })
-  .on('error', () => {
-    console.error('failed to start server', err)
+  .on('error', (error) => {
+    console.error('failed to start server', error)
   });

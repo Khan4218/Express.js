@@ -12,7 +12,7 @@ async function viewAllProducts() {
 
   try {
     const products = await db.all('SELECT * FROM products')
-    console.table(products)
+    // console.table(products)
   } catch (err) {
     console.error('Error fetching data', err)
   } finally {
