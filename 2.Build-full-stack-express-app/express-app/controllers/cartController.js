@@ -40,6 +40,32 @@ export async function addToCart(req, res) {
   }
     }
 
+
+export async function getCartCount(req, res) {
+    try {
+        const db = await getDBConnection();
+        
+        const userId = req.session.userId
+
+        console.log(userId);
+        
+      
+        if(!userId) {
+         return res.json({count: 0})
+        }
+        
+        const result = await db.get('SELECT SUM(quantity) AS totalItems FROM cart_items WHERE user_id = ?', [userId])
+
+        res.json({totalItems: result.totalItems || 0})
+        
+    } catch (error) {
+        console.error('Cart count error:', err.message)
+    res.status(500).json({ error: 'Failed to get cart count' })
+    }
+  
+  
+
+}  
  
 
 
