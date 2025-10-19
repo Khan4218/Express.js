@@ -10,14 +10,21 @@ document.getElementById('logout-btn').addEventListener('click', logout)
 
 async function init() {
   populateGenreSelect()
+
   const products = await getProducts()
   const name = await checkAuth()
+
   renderGreeting(name)
   renderProducts(products)
-  // showHideMenuItems(name)
-  // if (name) {
-  //   await updateCartIcon()
-  // }
+  showHideMenuItems(name)
+
+  // ✅ Only load cart count after confirming user session
+  if (name) {
+    // small delay ensures session cookie is ready
+    setTimeout(async () => {
+      await updateCartIcon()
+    }, 200)
+  }
 }
 
 init()
