@@ -78,6 +78,34 @@ export async function getAll(req, res) {
 
 } 
 
+export async function deleteItem(req, res) {
+
+    try{
+        
+        const db = await getDBConnection()
+    
+        const itemId = parseInt(req.params.itemId, 10)
+    
+        if(!itemId){
+          return res.status(400).json({message : 'Innvalid ItemId'})
+        }
+    
+        const item = await db.get('SELECT quantity FROM cart_items WHERE id = ? AND user_id = ?', [itemId, req.session.userId])
+    
+        if(!item) {
+         return res.status(400).json({message: 'item not found'})
+        }
+    
+        await db.run('DELETE FROM cart_items WHERE id = ? AND user_id = ?', [itemId, req.session.userId])
+    
+        res.status(204).send()
+    }catch(error) {
+    console.error('Delete item error:', error.message);
+     res.status(500).json({ error: 'Failed to delete item' });
+   }
+
+}
+
 
  
  
