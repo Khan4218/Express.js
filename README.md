@@ -39,6 +39,8 @@ VS Code — Development environment
 This repository is part of my full stack development journey.
 It showcases my continuous learning — experimenting, debugging, and improving backend logic through small, focused projects and exercises.
 
+🚀 Live Demo: https://shopspiral.onrender.com/
+
 🔗 Connect
 
 Check out my learning progress and other projects here:
